@@ -9,3 +9,5 @@ Installation
 2. Execute
 
 ln -s ~/dotfiles/vim/vim .vim
+ln -s ~/dotfiles/vim/vimrc .vimrc
+
