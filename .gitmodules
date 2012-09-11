@@ -1,6 +1,0 @@
-[submodule "awesome"]
-	path = awesome
-	url = /home/pif/.config/awesome
-[submodule "vim"]
-	path = vim
-	url = /tmp/dotfiles/dotfiles/vim
