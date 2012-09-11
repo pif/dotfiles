@@ -79,7 +79,7 @@ myshutdownmenu = {
 
 mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
                                     { "Debian", debian.menu.Debian_menu.Debian },
-                                    { "open terminal", terminal }, 
+                                    { "open terminal", terminal },
 				    { "shutdown", myshutdownmenu }
                                  }
                         })
@@ -118,7 +118,7 @@ vicious.register(textmemwidget, vicious.widgets.mem, "<span color=\"white\">$2MB
 cpuwidget = widget({ type = "textbox" })
 cpuwidget.align = "center"
 -- cpuwidget.width = 75
-vicious.register(cpuwidget, vicious.widgets.cpu, 
+vicious.register(cpuwidget, vicious.widgets.cpu,
     function (widget, args)
       return string.format('<span color="white">% 3d</span>%%  <span color="white">% 3d</span>%%', args[2], args[3])
     end, 7)
@@ -128,12 +128,12 @@ vicious.register(cpuwidget, vicious.widgets.cpu,
 
 weatherwidget = widget({ type="textbox"})
 -- weatherwidget.width = 200
-vicious.register(weatherwidget, vicious.widgets.weather, 
+vicious.register(weatherwidget, vicious.widgets.weather,
 function (widget, args)
 	local wnd = string.match(args["{wind}"],"(%w+)") .. " at " ..  args["{windkmh}"] .. " km/h, "
-	local sky = args["{sky}"] ~= "N/A" and args["{sky}"] .. ", "  or "" 
-      return args["{city}"] .. ":" .. sky .. wnd 
---      ${sky}, ${weather}, 
+	local sky = args["{sky}"] ~= "N/A" and args["{sky}"] .. ", "  or ""
+      return args["{city}"] .. ":" .. sky .. wnd
+--      ${sky}, ${weather},
       .. args["{tempc}"] .. " °C"
 end, 1807, "UKLL")
 -- datewidget = widget({ type = "textbox" })
@@ -224,8 +224,8 @@ for s = 1, screen.count() do
         separator, memwidget, textmemwidget,
 	separator, cpuwidget,
 	separator, weatherwidget,
-	--separator, memwidget, 
-	separator, upicon, mynetwidget, dnicon, 
+	--separator, memwidget,
+	separator, upicon, mynetwidget, dnicon,
 	separator, s == 1 and mysystray or nil,
         mytasklist[s],
         layout = awful.widget.layout.horizontal.rightleft
@@ -366,7 +366,7 @@ clientbuttons = awful.util.table.join(
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
 
---globalkeys = awful.util.table.join(globalkeys,	
+--globalkeys = awful.util.table.join(globalkeys,
 --    awful.key({modkey}, "e", revelation))
 
 -- Set keys
@@ -425,7 +425,8 @@ client.add_signal("focus", function(c) c.border_color = beautiful.border_focus e
 client.add_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
--- my linux init
+-- {{{ My Linux Init
+
 function run_once(prg,arg_string,pname,screen)
     if not prg then
         do return nil end
@@ -435,7 +436,7 @@ function run_once(prg,arg_string,pname,screen)
        pname = prg
     end
 
-    if not arg_string then 
+    if not arg_string then
         awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. ")",screen)
     else
         awful.util.spawn_with_shell("pgrep -f -u $USER -x '" .. pname .. "' || (" .. prg .. " " .. arg_string .. ")",screen)
@@ -450,10 +451,10 @@ function start_daemon(dae)
 end
 
 daemons = {
-	"gnome-settings-daemon", 
-	"nm-applet", 
-	"bluetooth-applet", 
---	"gnome-sound-applet", 
+	"gnome-settings-daemon",
+	"nm-applet",
+	"bluetooth-applet",
+--	"gnome-sound-applet",
 	"gnome-power-manager",
 	"gnome-do",
 	"/usr/lib/gnome-user-share/gnome-user-share"
@@ -462,6 +463,7 @@ for k = 1, #procs do
 --	start_daemon(daemons[k])
 end
 
---run_once("dropbox","start -i") 
+--run_once("dropbox","start -i")
 --run_once("nautilus", "-n")
 --run_once("wmname", "LG3D")
+-- }}}
