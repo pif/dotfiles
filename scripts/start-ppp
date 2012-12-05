@@ -1,8 +1,9 @@
+MYDIR="$(dirname "$(readlink -f "$0")")"
+$MYDIR/clear-network
+
 ifconfig eth0 192.168.1.122 netmask 255.255.255.0
 
 modprobe pppoe
-
-poff -a
 pon dsl-provider
 
 sleep 5

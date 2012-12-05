@@ -463,7 +463,7 @@ for k = 1, #procs do
 --	start_daemon(daemons[k])
 end
 
---run_once("dropbox","start -i")
+run_once("dropbox","start -i")
 --run_once("nautilus", "-n")
---run_once("wmname", "LG3D")
+run_once("wmname", "LG3D")
 -- }}}
